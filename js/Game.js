@@ -55,7 +55,7 @@ class Game {
       var index = 0;
 
       //x and y position of the cars
-      var x = 175 ;
+      var x = 200 ;
       var y;
 
       for(var plr in allPlayers){
@@ -63,7 +63,7 @@ class Game {
         index = index + 1 ;
 
         //position the cars a little away from each other in x direction
-        x = x + 200;
+        x = x + 280;
         //use data form the database to display the cars in y direction
         y = displayHeight - allPlayers[plr].distance;
         cars[index-1].x = x;
@@ -71,6 +71,11 @@ class Game {
 
         if (index === player.index){
           cars[index - 1].shapeColor = "red";
+          stroke(10)
+          fill("red")
+          ellipse(x,y,60,60);
+          textSize(25);
+          text(player.name,x,y-50)
           camera.position.x = displayWidth/2;
           camera.position.y = cars[index-1].y;
         }
@@ -86,8 +91,11 @@ class Game {
       player.update();
     }
 
-    if(player.distance > 3860){
+    if(player.distance > 4800){
       gameState = 2;
+      fill("blue")
+      textSize(45)
+      text("THE END",displayWidth/2 -50,y-200);
     }
    
     drawSprites();
